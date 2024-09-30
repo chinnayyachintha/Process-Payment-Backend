@@ -2,11 +2,27 @@
 resource "aws_qldb_ledger" "my_ledger" {
   name              = var.ledger_name
   permissions_mode  = var.permissions_mode
+
+  tags = merge(
+    {
+      Name = var.ledger_name
+    },
+    var.tags
+  )
+
 }
 
 # CloudWatch Log Group for QLDB-related logging
 resource "aws_cloudwatch_log_group" "qldb_log_group" {
   name = var.qldb_log_group_name
+
+  tags = merge(
+    {
+      Name = var.qldb_log_group_name
+    },
+    var.tags
+  )
+  
 }
 
 # CloudTrail for auditing QLDB events

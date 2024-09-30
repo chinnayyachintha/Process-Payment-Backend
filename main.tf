@@ -6,6 +6,7 @@ module "vpc" {
   public_subnet_cidr  = var.public_subnet_cidr
   private_subnet_cidr = var.private_subnet_cidr
   availability_zone   = var.availability_zone
+   tags                = var.tags
 }
 
 # Call QLDB module
@@ -16,5 +17,6 @@ module "qldb" {
   permissions_mode          = var.permissions_mode
   qldb_log_group_name       = var.qldb_log_group_name
   cloudtrail_s3_bucket_name = var.cloudtrail_s3_bucket_name
+  tags                      = var.tags
 }
 

@@ -25,3 +25,9 @@ qldb_log_group_name = "qldb-audit-logs"
 # S3 bucket to store CloudTrail logs for QLDB
 cloudtrail_s3_bucket_name = "my-qldb-audit-logs"
 
+# Tag values for AWS resources
+tags = {
+  Environment = "Development"
+  Project     = "Payment Gateway"
+  Owner       = "Anudeep"
+}
