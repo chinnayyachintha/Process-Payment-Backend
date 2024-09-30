@@ -17,3 +17,8 @@ variable "cloudtrail_s3_bucket_name" {
   description = "The S3 bucket name to store CloudTrail logs."
   type        = string
 }
+
+variable "tags" {
+  description = "A map of tags to assign to resources."
+  type        = map(string)
+}

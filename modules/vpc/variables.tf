@@ -17,3 +17,8 @@ variable "availability_zone" {
   description = "The availability zone for the subnets"
   type        = string
 }
+
+variable "tags" {
+  description = "A map of tags to assign to resources."
+  type        = map(string)
+}

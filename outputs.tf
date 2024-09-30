@@ -17,25 +17,25 @@ output "private_subnet_id" {
 # Outputs from the QLDB module
 output "qldb_ledger_name" {
   description = "The name of the QLDB ledger."
-  value       = module.qldb.ledger_name  # Ensure this matches the output defined in the QLDB module
+  value       = module.qldb.ledger_name # Ensure this matches the output defined in the QLDB module
 }
 
 output "qldb_log_group_name" {
   description = "The name of the CloudWatch log group for QLDB auditing."
-  value       = module.qldb.qldb_log_group_name  # Ensure this matches the output defined in the QLDB module
+  value       = module.qldb.qldb_log_group_name # Ensure this matches the output defined in the QLDB module
 }
 
 output "cloudtrail_arn" {
   description = "The ARN of the CloudTrail trail."
-  value       = module.qldb.cloudtrail_arn  # Ensure this matches the output defined in the QLDB module
+  value       = module.qldb.cloudtrail_arn # Ensure this matches the output defined in the QLDB module
 }
 
 output "cloudtrail_s3_bucket_name" {
   description = "The S3 bucket for storing CloudTrail logs."
-  value       = module.qldb.cloudtrail_s3_bucket_name  # Ensure this matches the output defined in the QLDB module
+  value       = module.qldb.cloudtrail_s3_bucket_name # Ensure this matches the output defined in the QLDB module
 }
 
 output "cloudwatch_log_group_name" {
   description = "The CloudWatch log group name."
-  value       = module.qldb.cloudwatch_log_group_name  # Ensure this matches the output defined in the QLDB module
+  value       = module.qldb.cloudwatch_log_group_name # Ensure this matches the output defined in the QLDB module
 }
