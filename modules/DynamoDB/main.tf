@@ -1,3 +1,6 @@
+# Fetch the current AWS account details
+data "aws_caller_identity" "current" {}
+
 # DynamoDB Table
 resource "aws_dynamodb_table" "my_dynamodb_table" {
   name           = var.table_name
@@ -50,6 +53,26 @@ resource "aws_s3_bucket" "dynamodb_audit_logs" {
   bucket = "${var.table_name}-audit-logs"
 }
 
+# CloudTrail for auditing DynamoDB events
+resource "aws_cloudtrail" "dynamodb_audit_trail" {
+  name                          = "${var.table_name}-trail"
+  s3_bucket_name                = aws_s3_bucket.dynamodb_audit_logs.bucket
+  include_global_service_events = true
+  is_multi_region_trail         = true
+  enable_log_file_validation    = true
+  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.dynamodb_log_group.arn
+  cloud_watch_logs_role_arn     = aws_iam_role.cloudtrail_role.arn
+  event_selector {
+    read_write_type           = "All"
+    include_management_events = true
+    data_resource {
+      type   = "AWS::DynamoDB::Table"
+      values = ["arn:aws:dynamodb:${var.aws_region}:${data.aws_caller_identity.current.account_id}:table/${aws_dynamodb_table.my_dynamodb_table.name}"]
+    }
+  }
+}
+
+
 # IAM Role for CloudTrail to write to CloudWatch Logs
 resource "aws_iam_role" "cloudtrail_role" {
   name = "${var.table_name}-cloudtrail-role"
@@ -73,25 +96,3 @@ resource "aws_iam_role_policy_attachment" "cloudtrail_policy_attachment" {
   role       = aws_iam_role.cloudtrail_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCloudTrailLoggingPolicy"
 }
-
-# CloudTrail for auditing DynamoDB events
-resource "aws_cloudtrail" "dynamodb_audit_trail" {
-  name                          = "${var.table_name}-trail"
-  s3_bucket_name                = aws_s3_bucket.dynamodb_audit_logs.bucket
-  include_global_service_events = true
-  is_multi_region_trail         = true
-  enable_log_file_validation    = true
-  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.dynamodb_log_group.arn
-  cloud_watch_logs_role_arn     = aws_iam_role.cloudtrail_role.arn
-  event_selector {
-    read_write_type           = "All"
-    include_management_events = true
-    data_resource {
-      type   = "AWS::DynamoDB::Table"
-      values = ["arn:aws:dynamodb:${var.aws_region}:${data.aws_caller_identity.current.account_id}:table/${aws_dynamodb_table.my_dynamodb_table.name}"]
-    }
-  }
-}
-
-
-

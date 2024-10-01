@@ -20,7 +20,7 @@ table_name = "my-dynamodb-table"
 hash_key = "id"
 
 # The range key for the DynamoDB table
-range_key ="create_at"
+range_key = "create_at"
 
 # The billing mode for DynamoDB (PAY_PER_REQUEST or PROVISIONED)
 billing_mode = "PAY_PER_REQUEST"
