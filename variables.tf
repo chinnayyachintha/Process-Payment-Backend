@@ -36,6 +36,7 @@ variable "hash_key" {
 variable "range_key" {
   description = "The range key for the DynamoDB table (optional)."
   type        = string
+  default     = null
 }
 
 variable "billing_mode" {

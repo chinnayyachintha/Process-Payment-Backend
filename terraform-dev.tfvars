@@ -19,7 +19,7 @@ table_name = "my-dynamodb-table"
 # hash key
 hash_key = "id"
 
-# range_key
+# The range key for the DynamoDB table
 range_key ="create_at"
 
 # The billing mode for DynamoDB (PAY_PER_REQUEST or PROVISIONED)
@@ -33,12 +33,6 @@ point_in_time_recovery = "true"
 
 # Enable server-side encryption for DynamoDB.
 server_side_encryption = "true"
-
-# S3 bucket to store CloudTrail logs for DynamoDB
-cloudtrail_s3_bucket_name = "my-dynamodb-table-audit-logs"
-
-# The range key for the DynamoDB table
-range_key = "null"
 
 # Tag values for AWS resources
 tags = {
