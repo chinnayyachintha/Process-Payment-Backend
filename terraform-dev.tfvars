@@ -13,17 +13,32 @@ private_subnet_cidr = "10.0.2.0/24"
 # Availability zone for the subnets
 availability_zone = "ca-central-1a"
 
-# Name of the QLDB ledger
-ledger_name = "my-qlbd-ledger"
+# Name of the DynamoDB Table
+table_name = "my-dynamodb-table"
 
-# Permissions mode for QLDB (ALLOW_ALL or STANDARD)
-permissions_mode = "ALLOW_ALL"
+# hash key
+hash_key = "id"
 
-# Name of the CloudWatch Log Group for QLDB audit logs
-qldb_log_group_name = "qldb-audit-logs"
+# range_key
+range_key ="create_at"
 
-# S3 bucket to store CloudTrail logs for QLDB
-cloudtrail_s3_bucket_name = "my-qldb-audit-logs"
+# The billing mode for DynamoDB (PAY_PER_REQUEST or PROVISIONED)
+billing_mode = "PAY_PER_REQUEST"
+
+# Name for the CloudWatch log group for DynamoDB logs
+dynamodb-log-group_name = "dynamodb-log-group"
+
+# Enable point-in-time recovery for DynamoDB
+point_in_time_recovery = "true"
+
+# Enable server-side encryption for DynamoDB.
+server_side_encryption = "true"
+
+# S3 bucket to store CloudTrail logs for DynamoDB
+cloudtrail_s3_bucket_name = "my-dynamodb-table-audit-logs"
+
+# The range key for the DynamoDB table
+range_key = "null"
 
 # Tag values for AWS resources
 tags = {

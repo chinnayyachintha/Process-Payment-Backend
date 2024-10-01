@@ -9,14 +9,19 @@ module "vpc" {
   tags                = var.tags
 }
 
-# Call QLDB module
-module "qldb" {
-  source = "./modules/qldb"
+# Call DynamoDB Module
+module "dynamodb" {
+  source = "./modules/DynamoDB" # Path to your module
 
-  ledger_name               = var.ledger_name
-  permissions_mode          = var.permissions_mode
-  qldb_log_group_name       = var.qldb_log_group_name
-  cloudtrail_s3_bucket_name = var.cloudtrail_s3_bucket_name
-  tags                      = var.tags
+  table_name              = var.table_name
+  hash_key                = var.hash_key
+  range_key               = var.range_key
+  billing_mode            = var.billing_mode
+  point_in_time_recovery  = var.point_in_time_recovery
+  server_side_encryption  = var.server_side_encryption
+  dynamodb_log_group_name = var.dynamodb_log_group_name
+  aws_region              = var.aws_region
+  tags                    = var.tags
 }
+
 
