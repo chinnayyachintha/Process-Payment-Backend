@@ -26,7 +26,7 @@ range_key = "create_at"
 billing_mode = "PAY_PER_REQUEST"
 
 # Name for the CloudWatch log group for DynamoDB logs
-dynamodb-log-group_name = "dynamodb-log-group"
+dynamodb_log_group_name = "dynamodb-log-group"
 
 # Enable point-in-time recovery for DynamoDB
 point_in_time_recovery = "true"

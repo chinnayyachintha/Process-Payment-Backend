@@ -1,23 +1,39 @@
 # Fetch the current AWS account details
 data "aws_caller_identity" "current" {}
 
-# DynamoDB Table
 resource "aws_dynamodb_table" "my_dynamodb_table" {
-  name           = var.table_name
-  billing_mode   = var.billing_mode
-  hash_key       = var.hash_key
+  name         = var.table_name
+  billing_mode = var.billing_mode
+  hash_key     = var.hash_key
 
+  # Define the hash key attribute
   attribute {
     name = var.hash_key
     type = "S"
   }
 
+  # Define the range key dynamically if it exists
   dynamic "attribute" {
     for_each = var.range_key != null ? [var.range_key] : []
     content {
       name = var.range_key
       type = "S"
     }
+  }
+
+  # Define the `create_at` attribute
+  attribute {
+    name = "create_at"
+    type = "S"
+  }
+
+  # Global Secondary Index (GSI) to index the `create_at` attribute
+  global_secondary_index {
+    name               = "CreateAtIndex"
+    hash_key           = "create_at"
+    projection_type    = "ALL"
+    write_capacity     = 1
+    read_capacity      = 1
   }
 
   point_in_time_recovery {
@@ -36,7 +52,7 @@ resource "aws_dynamodb_table" "my_dynamodb_table" {
   )
 }
 
-# CloudWatch Log Group for DynamoDB-related logging
+# CloudWatch Log Group for DynamoDB logging
 resource "aws_cloudwatch_log_group" "dynamodb_log_group" {
   name = var.dynamodb_log_group_name
 
@@ -47,6 +63,7 @@ resource "aws_cloudwatch_log_group" "dynamodb_log_group" {
     var.tags
   )
 }
+
 
 # S3 Bucket to store CloudTrail logs
 resource "aws_s3_bucket" "dynamodb_audit_logs" {
