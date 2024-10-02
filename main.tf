@@ -11,7 +11,7 @@ module "vpc" {
 
 # Call DynamoDB Module
 module "dynamodb" {
-  source                  = "./modules/DynamoDB"  # Path to your module
+  source                  = "./modules/DynamoDB" # Path to your module
   table_name              = var.table_name
   hash_key                = var.hash_key
   range_key               = var.range_key

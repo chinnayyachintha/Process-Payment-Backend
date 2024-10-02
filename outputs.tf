@@ -25,26 +25,6 @@ output "dynamodb_table_arn" {
   value       = module.dynamodb.dynamodb_table_arn
 }
 
-output "cloudtrail_name" {
-  description = "The name of the CloudTrail"
-  value       = module.dynamodb.cloudtrail_name
-}
-
-output "cloudtrail_arn" {
-  description = "The ARN of the CloudTrail"
-  value       = module.dynamodb.cloudtrail_arn
-}
-
-output "cloudwatch_log_group_name" {
-  description = "The name of the CloudWatch Log Group for DynamoDB logging"
-  value       = module.dynamodb.cloudwatch_log_group_name
-}
-
-output "cloudwatch_log_group_arn" {
-  description = "The ARN of the CloudWatch Log Group for DynamoDB logging"
-  value       = module.dynamodb.cloudwatch_log_group_arn
-}
-
 output "s3_bucket_name" {
   description = "The name of the S3 bucket for CloudTrail logs"
   value       = module.dynamodb.s3_bucket_name
