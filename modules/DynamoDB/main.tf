@@ -59,6 +59,9 @@ resource "aws_dynamodb_table" "my_dynamodb_table" {
     type = "S"
   }
 
+  # Enable deletion protection
+  deletion_protection_enabled = true
+  
   # Global Secondary Index (GSI) to index the `create_at` attribute
   global_secondary_index {
     name            = "CreateAtIndex"

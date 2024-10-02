@@ -34,3 +34,13 @@ output "s3_bucket_arn" {
   description = "The ARN of the S3 bucket for CloudTrail logs"
   value       = module.dynamodb.s3_bucket_arn
 }
+
+output "dynamodb_vpc_endpoint_id" {
+  description = "The ID of the DynamoDB VPC Endpoint."
+  value       = module.vpc.dynamodb_vpc_endpoint_id
+}
+
+output "dynamodb_security_group_id" {
+  description = "The ID of the security group for the DynamoDB VPC Endpoint."
+  value       = module.vpc.dynamodb_security_group_id
+}

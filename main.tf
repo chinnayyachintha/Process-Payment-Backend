@@ -2,6 +2,7 @@
 module "vpc" {
   source = "./modules/vpc"
 
+  aws_region              = var.aws_region
   vpc_cidr_block      = var.vpc_cidr_block
   public_subnet_cidr  = var.public_subnet_cidr
   private_subnet_cidr = var.private_subnet_cidr
@@ -12,6 +13,7 @@ module "vpc" {
 # Call DynamoDB Module
 module "dynamodb" {
   source                  = "./modules/DynamoDB" # Path to your module
+  
   table_name              = var.table_name
   hash_key                = var.hash_key
   range_key               = var.range_key

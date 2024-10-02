@@ -91,3 +91,52 @@ resource "aws_route_table_association" "private" {
   subnet_id = aws_subnet.private.id
   route_table_id = aws_route_table.private.id
 }
+
+# DynamoDB VPC Interface Endpoint (PrivateLink)
+resource "aws_vpc_endpoint" "dynamodb" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.${var.aws_region}.dynamodb"  # Service name for DynamoDB
+  vpc_endpoint_type = "Interface"
+
+  # Define the subnets in which to create the endpoint
+  subnet_ids = [
+    aws_subnet.private.id  # Use the private subnet for the endpoint
+  ]
+
+  # Security Group to allow access to the endpoint
+  security_group_ids = [aws_security_group.dynamodb_sg.id]
+
+  tags = merge(
+    {
+      Name = "DynamoDBEndpoint"
+    },
+    var.tags
+  )
+}
+
+# Security Group for DynamoDB VPC Endpoint
+resource "aws_security_group" "dynamodb_sg" {
+  vpc_id = aws_vpc.main.id
+
+  # Allow traffic from the private subnet (adjust the CIDR as necessary)
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [aws_subnet.private.cidr_block]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"  # Allow all outbound traffic
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    {
+      Name = "DynamoDBEndpointSG"
+    },
+    var.tags
+  )
+}
