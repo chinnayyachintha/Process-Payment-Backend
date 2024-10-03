@@ -1,8 +1,8 @@
 # Call VPC module
 module "vpc" {
-  source = "./modules/vpc"
+  source = "./modules/VPC" # Path to your module
 
-  aws_region              = var.aws_region
+  aws_region          = var.aws_region 
   vpc_cidr_block      = var.vpc_cidr_block
   public_subnet_cidr  = var.public_subnet_cidr
   private_subnet_cidr = var.private_subnet_cidr
