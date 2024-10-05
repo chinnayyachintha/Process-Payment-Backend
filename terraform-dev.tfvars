@@ -1,3 +1,5 @@
+# VPC Configuration
+
 # Specify the AWS region
 aws_region = "ca-central-1"
 
@@ -13,10 +15,19 @@ private_subnet_cidr = "10.0.2.0/24"
 # Availability zone for the subnets
 availability_zone = "ca-central-1a"
 
+# Tag values for AWS resources
+tags = {
+  Environment = "Development"
+  Project     = "Payment Gateway"
+  Owner       = "Anudeep"
+}
+
+# DynamoDB Configuration
+
 # Name of the DynamoDB Table
 table_name = "my-dynamodb-table"
 
-# hash key
+# Hash key
 hash_key = "id"
 
 # The range key for the DynamoDB table
@@ -33,10 +44,3 @@ point_in_time_recovery = "true"
 
 # Enable server-side encryption for DynamoDB.
 server_side_encryption = "true"
-
-# Tag values for AWS resources
-tags = {
-  Environment = "Development"
-  Project     = "Payment Gateway"
-  Owner       = "Anudeep"
-}

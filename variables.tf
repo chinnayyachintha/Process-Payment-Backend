@@ -1,3 +1,4 @@
+# VPC Configuration
 variable "aws_region" {
   type        = string
   description = "The AWS region to deploy resources in"
@@ -23,6 +24,7 @@ variable "availability_zone" {
   type        = string
 }
 
+# DynamoDB Configuration
 variable "table_name" {
   description = "The name of the DynamoDB table."
   type        = string
@@ -59,7 +61,7 @@ variable "dynamodb_log_group_name" {
   type        = string
 }
 
-
+# common
 variable "tags" {
   description = "A map of tags to assign to resources."
   type        = map(string)

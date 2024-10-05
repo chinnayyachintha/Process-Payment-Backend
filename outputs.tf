@@ -1,4 +1,4 @@
-# Outputs from the VPC module
+# Outputs from the VPC Module
 output "vpc_id" {
   description = "The ID of the VPC"
   value       = module.vpc.vpc_id
@@ -12,6 +12,16 @@ output "public_subnet_id" {
 output "private_subnet_id" {
   description = "The ID of the private subnet"
   value       = module.vpc.private_subnet_id
+}
+
+output "dynamodb_vpc_endpoint_id" {
+  description = "The ID of the DynamoDB VPC Endpoint."
+  value       = module.vpc.dynamodb_vpc_endpoint_id
+}
+
+output "dynamodb_security_group_id" {
+  description = "The ID of the security group for the DynamoDB VPC Endpoint."
+  value       = module.vpc.dynamodb_security_group_id
 }
 
 # Outputs from the DynamoDB Module
@@ -35,12 +45,4 @@ output "s3_bucket_arn" {
   value       = module.dynamodb.s3_bucket_arn
 }
 
-output "dynamodb_vpc_endpoint_id" {
-  description = "The ID of the DynamoDB VPC Endpoint."
-  value       = module.vpc.dynamodb_vpc_endpoint_id
-}
 
-output "dynamodb_security_group_id" {
-  description = "The ID of the security group for the DynamoDB VPC Endpoint."
-  value       = module.vpc.dynamodb_security_group_id
-}
