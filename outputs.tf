@@ -45,4 +45,14 @@ output "s3_bucket_arn" {
   value       = module.dynamodb.s3_bucket_arn
 }
 
+#Outputs from the ec2-instance module
+output "instance_id" {
+  description = "The ID of the EC2 instance"
+  value       = module.ec2-instance.instance_id
+}
+
+output "public_ip" {
+  description = "The public IP address of the EC2 instance"
+  value       = module.ec2-instance.public_ip
+}
 

@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
 
   tags = merge(
     {
-      Name = "MyVPC"
+      Name = "${var.vpc_name}-VPC"
     },
     var.tags
   )
@@ -22,7 +22,7 @@ resource "aws_subnet" "public" {
 
   tags = merge(
     {
-      Name = "PublicSubnet"
+      Name = "${var.vpc_name}-PublicSubnet"
     },
     var.tags
   )
@@ -37,7 +37,7 @@ resource "aws_subnet" "private" {
 
   tags = merge(
     {
-      Name = "PrivateSubnet"
+      Name = "${var.vpc_name}-PrivateSubnet"
     },
     var.tags
   )
@@ -108,7 +108,7 @@ resource "aws_vpc_endpoint" "dynamodb" {
 
   tags = merge(
     {
-      Name = "DynamoDBEndpoint"
+      Name = "${var.vpc_name}-DynamoDBEndpoint"
     },
     var.tags
   )
@@ -135,7 +135,7 @@ resource "aws_security_group" "dynamodb_sg" {
 
   tags = merge(
     {
-      Name = "DynamoDBEndpointSG"
+      Name = "${var.vpc_name}-DynamoDBEndpointSG"
     },
     var.tags
   )

@@ -3,6 +3,9 @@
 # Specify the AWS region
 aws_region = "ca-central-1"
 
+# vpc name
+vpc_name = "audit-infra"
+
 # CIDR block for the VPC
 vpc_cidr_block = "10.0.0.0/16"
 
@@ -44,3 +47,24 @@ point_in_time_recovery = "true"
 
 # Enable server-side encryption for DynamoDB.
 server_side_encryption = "true"
+
+#ec2-instance configuration
+
+# SSH CIDR Block
+ssh_cidr_block = "60.243.199.167/32" # Our laptop public ip
+
+# AMI Name
+ami_name = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*" # Example AMI name pattern
+
+# Public Key Location
+public_key_location = "./modules/ec2-instance/public_key.pem" # Update with your public key path
+
+# Instance Type
+instance_type = "t2.micro" # Specify your instance type
+
+#vpc_id
+vpc_id = "./modules/vpc/vpc_id"
+
+#public_subnet_id
+public_subnet_id = "./modules/vpc/public_subnet_id"
+
