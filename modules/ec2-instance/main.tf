@@ -59,6 +59,6 @@ resource "aws_instance" "audit-server" {
   key_name                   = aws_key_pair.ssh-key.key_name
 
   tags = {
-    Name = "${var.vpc_name}-audit-server"
+    Name = "${var.vpc_name}-server"
   }
 }

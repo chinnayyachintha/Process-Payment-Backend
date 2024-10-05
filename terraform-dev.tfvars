@@ -1,3 +1,6 @@
+#Project Name
+project_name = "payment_gateway"
+
 # VPC Configuration
 
 # Specify the AWS region
