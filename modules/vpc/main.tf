@@ -47,6 +47,13 @@ resource "aws_subnet" "private" {
 # Internet Gateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    {
+      Name = "${var.vpc_name}-IGW
+    },
+    var.tags
+  )
 }
 
 # Public Route Table
@@ -57,6 +64,13 @@ resource "aws_route_table" "public" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
+
+  tags = merge(
+    {
+      Name = "${var.vpc_name}-Public_RT"
+    },
+    var.tags
+  )
 }
 
 # Associate Route Table with Public Subnet
@@ -84,6 +98,13 @@ resource "aws_route_table" "private" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat.id
   }
+
+  tags = merge(
+    {
+      Name = "${var.vpc_name}-Private_RT"
+    },
+    var.tags
+  )
 }
 
 # Associate Route Table with Private Subnet
